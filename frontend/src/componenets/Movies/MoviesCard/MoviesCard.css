@@ -1,0 +1,145 @@
+.card {
+  max-width: 100%;
+  height: 227px;
+  color: #000;
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.card__image {
+  margin: 5px 0 0;
+  padding: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px transparent solid;
+  width: 100%;
+  height: 201px;
+  border-radius: 6px;
+}
+
+.card__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__title-block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 14px 0;
+  color: #000;
+}
+.card__title {
+  max-width: 250px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #fff;
+}
+
+.card__time {
+  display: flex;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #a0a0a0;
+  align-items: center;
+  border-radius: 3px;
+  background: rgba(47, 47, 47, 1);
+  color: rgba(139, 139, 139, 1);
+  padding: 3px 9px;
+}
+
+.card__like-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 72px;
+  height: 21px;
+  background-color: rgba(249, 249, 249, 1);
+  border-radius: 30px;
+  font-size: 10px;
+  color: #000;
+  font-weight: 400;
+  line-height: 9px;
+  background-color: transparent;
+  border: none;
+  background-image: url(../../../images/savemovie-button.svg);
+  cursor: pointer;
+}
+
+.card__like-button:hover {
+  opacity: 0.6;
+}
+
+.card__like-button_active {
+  width: 21px;
+  background-image: url(../../../images/savedmovie-button.svg);
+}
+
+.card__like-remove {
+  width: 21px;
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 8px;
+  right: 6px;
+  cursor: pointer;
+}
+
+.card__like-remove:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1023px) {
+  .card {
+    height: 262px;
+    margin-bottom: -13px;
+  }
+  .card__title-block {
+    margin: 23px 0 0;
+  }
+  .card__image {
+    margin: -2px 0 0;
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card {
+    height: 233px;
+  }
+
+  .card__image {
+    height: 168px;
+  }
+
+  .card__title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .card__time {
+    margin-top: 13px;
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .card__title-block {
+    margin: 12px 0 0;
+  }
+
+  .card__time {
+    margin-top: 4px;
+  }
+
+  .card__like-button {
+    top: 8px;
+    right: 10px;
+  }
+}
