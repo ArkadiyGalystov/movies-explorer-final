@@ -1,7 +1,7 @@
 import { getCheckResponse } from "./functionHelpers"
 
-//export const BASE_URL = 'https://api';
-export const BASE_URL = "http://localhost:3001"
+export const BASE_URL = 'https://ark.api.nomoredomainsicu.ru';
+//export const BASE_URL = "http://localhost:3001"
 
 export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
