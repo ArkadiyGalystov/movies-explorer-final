@@ -2,7 +2,11 @@ const allowedCors = [
   'https://localhost:3000',
   'http://localhost:3000',
   'https://localhost:3001',
-  'http://localhost:3001'
+  'http://localhost:3001',
+  'https://ark.nomoredomainsicu.ru',
+  'http://ark.nomoredomainsicu.ru',
+  'https://ark.api.nomoredomainsicu.ru',
+  'http://ark.api.nomoredomainsicu.ru'
 ];
 
 module.exports = (req, res, next) => {
