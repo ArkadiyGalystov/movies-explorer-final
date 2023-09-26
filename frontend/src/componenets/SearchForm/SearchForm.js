@@ -3,7 +3,7 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox.js"
 import { useLocation } from "react-router-dom"
 import "./SearchForm.css"
 
-function SearchForm({ getSearchMovies, onFilterMovies, isShortMovies }) {
+function SearchForm({ searchMovies, onFilterMovies, isShortMovies }) {
   const [isQueryError, setIsQueryError] = useState(false)
   const location = useLocation()
   const [query, setQuery] = useState("")
@@ -24,7 +24,7 @@ function SearchForm({ getSearchMovies, onFilterMovies, isShortMovies }) {
       setIsQueryError(true)
     } else {
       setIsQueryError(false)
-      getSearchMovies(query)
+      searchMovies(query)
     }
   }
 
