@@ -1,6 +1,8 @@
 const allowedCors = [
-  'https://api.',
-  'http://',
+  'http://ark.nomoredomainsicu.ru',
+  'https://ark.nomoredomainsicu.ru',
+  'http://ark.api.nomoredomainsicu.ru',
+  'https://ark.api.nomoredomainsicu.ru',
   'https://localhost:3000',
   'http://localhost:3000',
   'https://localhost:3001',
