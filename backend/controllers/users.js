@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const BadRequestError = require('../errors/BadRequestError');
 const ConflictError = require('../errors/ConflictError');
-const NotFoundError = require('../errors/NotFoundError');
+const PageNotFound = require('../errors/PageNotFound');
 
 const { NODE_ENV, SECRET_KEY } = process.env;
 const { SECRET_KEY_DEV, CREATED_CODE } = require('../utils/constants');
@@ -53,7 +53,7 @@ const getUserInfo = (req, res, next) => {
   const userId = req.user._id;
   User.findById(userId)
     .orFail(() => {
-      throw new NotFoundError('Пользователь по указанному _id не найден');
+      throw new PageNotFound('Пользователь по указанному _id не найден');
     })
     .then((user) => {
       res.send(user);
@@ -78,7 +78,7 @@ const editUserInfo = (req, res, next) => {
     },
   )
     .orFail(() => {
-      throw new NotFoundError('Пользователь с указанным _id не найден');
+      throw new PageNotFound('Пользователь с указанным _id не найден');
     })
     .then((user) => {
       res.send(user);
