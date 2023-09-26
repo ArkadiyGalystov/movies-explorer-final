@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const auth = require('../middlewares/auth');
 const { registrationUser, loginUser } = require('../controllers/users');
-const NotFoundError = require('../errors/NotFoundError');
+const PageNotFound = require('../errors/PageNotFound');
 const userRouter = require('./users');
 const movieRouter = require('./movies');
 
@@ -21,7 +21,7 @@ router.use('/', userRouter);
 router.use('/', movieRouter);
 
 router.use('*', (req, res, next) => {
-  next(new NotFoundError('Страница не найдена'));
+  next(new PageNotFound('Страница не найдена'));
 });
 
 module.exports = router;
