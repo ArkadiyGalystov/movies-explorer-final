@@ -26,9 +26,7 @@ const registrationUser = (req, res, next) => {
         next(new ConflictError('Такой пользователь уже существует'));
       } else if (e.name === 'ValidationError') {
         next(
-          new BadRequestError(
-            'Переданы некорректные данные при создании пользователя',
-          ),
+          new BadRequestError('Переданы некорректные данные при создании пользователя'),
         );
       } else {
         next(e);
@@ -90,9 +88,7 @@ const editUserInfo = (req, res, next) => {
         next(new ConflictError('Такой пользователь уже существует'));
       } else if (e.name === 'ValidationError') {
         next(
-          new BadRequestError(
-            'Переданы некорректные данные при обновлении профиля',
-          ),
+          new BadRequestError('Переданы некорректные данные при обновлении профиля'),
         );
       } else {
         next(e);

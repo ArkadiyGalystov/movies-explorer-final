@@ -1,3 +1,4 @@
+// Файл маршрута users/me
 const userRouter = require('express').Router();
 
 const {
