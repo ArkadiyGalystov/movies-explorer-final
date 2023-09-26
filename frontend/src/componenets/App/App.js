@@ -12,7 +12,7 @@ import Register from "../Register/Register.js"
 import "./App.css"
 import * as api from "../../utils/MainApi.js"
 import Profile from "../Profile/Profile.js"
-import NotFoundError from "../NotFoundError/NotFoundError.js"
+import PageNotFound from "../PageNotFound/PageNotFound.js"
 import InfoTooltip from "../InfoToolTip/InfoToolTip.js"
 import InfoTooltipEditProfile from "../InfoTooltipEditProfile/InfoTooltipEditProfile.js"
 
@@ -243,7 +243,7 @@ function App() {
                 )
               }
             />
-            <Route path={"*"} element={<NotFoundError />} />
+            <Route path={"*"} element={<PageNotFound />} />
             <Route
               path={"/movies"}
               element={
