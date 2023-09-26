@@ -3,11 +3,11 @@ import "./Movies.css"
 import Footer from "../Footer/Footer.js"
 import Header from "../Header/Header.js"
 import { filterMovies, counterDurationMovie } from "../../utils/functionHelpers.js"
-import SearchForm from "../SearchForm/SearchForm"
+import SearchForm from "../SearchForm/SearchForm.js"
 import MoviesCardList from "./MoviesCardList/MoviesCardList.js"
 import * as movies from "../../utils/MoviesApi.js"
 
-function Movies({ loggedIn, savedMovies, likeMovie, onDeleteCard }) {
+function Movies({ loggedIn, savedMovies, getLikeMovie, onDeleteCard }) {
   const [isLoading, setIsLoading] = useState(false)
   const [filteredMovies, setFilteredMovies] = useState([])
   const [initialCardsMovies, setInitialCardsMovies] = useState([])
@@ -15,7 +15,6 @@ function Movies({ loggedIn, savedMovies, likeMovie, onDeleteCard }) {
   const [isReqError, setisReqError] = useState(false)
   const [isNotFound, setIsNotFound] = useState(false)
 
-  // поиск фильмов
   function searchMovies(query) {
     localStorage.setItem("movieSearch", query)
     localStorage.setItem("shortMovies", isShortMovies)
@@ -51,7 +50,6 @@ function Movies({ loggedIn, savedMovies, likeMovie, onDeleteCard }) {
     localStorage.setItem("shortMovies", !isShortMovies)
   }
 
-  // фильтрации фильмов
   function handleFilterMovie(movies, query, short) {
     const moviesFilmList = filterMovies(movies, query, short)
     setInitialCardsMovies(moviesFilmList)
@@ -62,12 +60,10 @@ function Movies({ loggedIn, savedMovies, likeMovie, onDeleteCard }) {
     localStorage.setItem("allMovies", JSON.stringify(movies))
   }
 
-  // короткометражные фильмы (фильтрация)
   useEffect(() => {
     setisShortMovies(localStorage.getItem("shortMovies") === "true")
   }, [])
 
-  // фильмы из localStorage
   useEffect(() => {
     if (localStorage.getItem("movies")) {
       const movies = JSON.parse(localStorage.getItem("movies"))
@@ -102,7 +98,7 @@ function Movies({ loggedIn, savedMovies, likeMovie, onDeleteCard }) {
         isSavedFilms={false}
         savedMovies={savedMovies}
         isReqError={isReqError}
-        likeMovie={likeMovie}
+        getLikeMovie={getLikeMovie}
         onDeleteCard={onDeleteCard}
         isNotFound={isNotFound}
       />

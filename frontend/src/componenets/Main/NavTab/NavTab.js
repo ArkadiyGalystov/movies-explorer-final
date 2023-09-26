@@ -7,6 +7,7 @@ function NavTab() {
     <section className="navtab">
       <nav className="navtab__nav">
         <ul className="navtab__links">
+
           <li className="navtab__link-block">
             <Link to="aboutproject" smooth={true} duration={500}>
               <button type="button" className="navtab__link link">О проекте</button>
@@ -18,7 +19,7 @@ function NavTab() {
               <button type="button" className="navtab__link link">Технологии</button>
             </Link>
           </li>
-
+          
           <li className="navtab__link-block">
             <Link to="aboutme" smooth={true} duration={500}>
               <button type="button" className="navtab__link link">Студент</button>

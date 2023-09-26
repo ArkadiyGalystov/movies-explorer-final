@@ -12,12 +12,16 @@ function Navigation({ handleCloseMobileMenu }) {
       <div className="navigation__block-overlay"></div>
       <div className="navigation__menu">
         <button className="navigation__close-button" onClick={handleCloseMobileMenu}></button>
+
         <nav className="navigation__links">
           <NavLink to="/" className={setActiveColorHeaderLink}>Главная</NavLink>
           <NavLink to="/movies" className={setActiveColorHeaderLink}>Фильмы</NavLink>
           <NavLink to="/saved-movies" className={setActiveColorHeaderLink}>Сохранённые фильмы</NavLink>
         </nav>
-        <Link to="/profile" className="navigation__account-button"><img src={account} alt="Кнопка аккаунт" /></Link>
+
+        <Link to="/profile" className="navigation__account-button">
+          <img src={account} alt="Кнопка" />
+        </Link>
       </div>
     </div>
   )

@@ -23,26 +23,22 @@ function Header({ loggedIn }) {
     <>
       {!loggedIn ? (
         <header className="header" id="header">
-          <Link to="/" className="form__logo"><img src={headerLogo} alt="Лого" /></Link>
-          <div className="header__links">
-            <Link to="/signup" className="header__button">Регистрация</Link>
-            <Link to="/signin" className="header__button header__button-green">Войти</Link>
+          <Link className="form__logo" to="/" > <img src={headerLogo} alt="Логотип" /></Link>
+          <div className="header__links"> <Link className="header__button" to="/signup">Регистрация</Link>
+            <Link className="header__button header__button-green" to="/signin">Войти</Link>
           </div>
         </header>
       ) : (
         <header className="header header__color-dark">
-          <Link to="/" className="form__logo"><img src={headerLogo} alt="Лого" /></Link>
-
-          <div className="header__links header__links_films">
-            <NavLink to="/movies" className={activeColorHeaderLink}>Фильмы</NavLink>
-            <NavLink to="/saved-movies" className={activeColorHeaderLink}>Сохранённые фильмы</NavLink>
+          <Link className="form__logo" to="/"> <img src={headerLogo} alt="Логотип" /></Link>
+          <div className="header__links header__links_films"> <NavLink className={activeColorHeaderLink} to="/movies">Фильмы</NavLink>
+            <NavLink className={activeColorHeaderLink} to="/saved-movies">Сохранённые фильмы</NavLink>
           </div>
 
           <div className="header__links">
-            <Link to="/profile" className="header__account-btn">Аккаунт</Link>
-            <button className="header__mobile-btn" onClick={handleOpenMobileMenu}><img src={mobileMenu} alt="гамбургер-меню" /></button>
+            <Link className="header__account-btn" to="/profile">Аккаунт</Link>
+            <button className="header__mobile-btn" onClick={handleOpenMobileMenu}> <img src={mobileMenu} alt="Бургер меню" /></button>
           </div>
-
           {isClicked ? (
             <Navigation handleCloseMobileMenu={handleCloseMobileMenu} />
           ) : (

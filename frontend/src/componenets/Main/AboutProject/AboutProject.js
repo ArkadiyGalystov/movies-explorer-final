@@ -22,8 +22,8 @@ function AboutProject() {
             соблюдать, чтобы успешно защититься.
           </p>
         </div>
-
       </div>
+
       <div className="about-project__timeline">
         <div className="about-project__week-one">
           <h4 className="about-project__timeline-title about-project__timeline-title_backend">1 неделя</h4>

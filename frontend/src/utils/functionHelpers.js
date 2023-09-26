@@ -7,19 +7,16 @@ export const getCheckResponse = (res) => {
   return Promise.reject(`Error: ${res.status}`)
 }
 
-// конвертиртация продолжительности фильмов в минутах в часы и минуты
 export function converterDurationMovie(duration) {
   const hours = Math.floor(duration / 60)
   const minutes = duration % 60
   return `${hours}ч${minutes}м`
 }
 
-// длительность фильмов
 export function counterDurationMovie(movies) {
   return movies.filter((movie) => movie.duration < MAX_DURATION_MOVIE)
 }
 
-// короткометражки
 export function filterMovies(movies, query) {
   const moviesQuery = movies.filter((movie) => {
     const movieRu = String(movie.nameRU).toLowerCase().trim()

@@ -20,8 +20,8 @@ function Profile({ loggedIn, isLoading, onUpdateUser, signOut }) {
     }
   }, [currentUser, resetForm])
 
-  function editProfileInfo(evt) {
-    evt.preventDefault()
+  function editProfileInfo(e) {
+    e.preventDefault()
     onUpdateUser({
       name: enteredValues.name,
       email: enteredValues.email,
@@ -45,41 +45,18 @@ function Profile({ loggedIn, isLoading, onUpdateUser, signOut }) {
       <Header loggedIn={loggedIn} />
       <section className="profile">
         <h3 className="profile__title">Привет, {currentUser.name}!</h3>
-        <form
-          id="form"
-          className="profile__form"
-          onSubmit={editProfileInfo}
-          noValidate
-        >
-          <label className="profile__label">
-            Имя
-            <input
-              name="name"
-              className="profile__input"
-              type="text"
-              minLength="2"
-              maxLength="40"
-              onChange={handleChangeInput}
-              value={enteredValues.name || ""}
-              placeholder="имя"
-              required
-            />
+        <form className="profile__form" id="form" onSubmit={editProfileInfo} noValidate>
+
+          <label className="profile__label">Имя
+            <input сlassName="profile__input" name="name" type="text" minLength="2" maxLength="40" onChange={handleChangeInput}
+              value={enteredValues.name || ""} placeholder="Ваше имя" required />
             <span className="profile__input-error">{errors.name}</span>
           </label>
 
           <div className="profile__border"></div>
-          <label className="profile__label">
-            E-mail
-            <input
-              name="email"
-              className="profile__input"
-              type="email"
-              onChange={handleChangeInput}
-              pattern={EMAIL_REGEX}
-              value={enteredValues.email || ""}
-              placeholder="почта"
-              required
-            />
+          <label className="profile__label">E-mail
+            <input className="profile__input" name="email" type="email" onChange={handleChangeInput}
+              pattern={EMAIL_REGEX} value={enteredValues.email || ""} placeholder="Ваш e-mail" required />
             <span className="profile__input-error">{errors.email}</span>
           </label>
 
@@ -90,10 +67,12 @@ function Profile({ loggedIn, isLoading, onUpdateUser, signOut }) {
               !isFormValid || isLoading || isLastValues
                 ? "profile__button-save form__button-save_inactive"
                 : "profile__button-save"
-            }>Редактировать</button>
+            }
+          >Редактировать
+          </button>
 
-          <Link to="/profile" className="profile__exit-link" onClick={signOut}>
-            <button type="button" className="profile__exit-button">Выйти из аккаунта</button>
+          <Link className="profile__exit-link" to="/profile" onClick={signOut}>
+            <button className="profile__exit-button" type="button">Выйти из аккаунта</button>
           </Link>
         </form>
       </section>

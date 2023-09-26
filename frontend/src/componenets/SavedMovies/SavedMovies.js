@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react"
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList.js"
 import Header from "../Header/Header.js"
 import Footer from "../Footer/Footer.js"
-import {
-  filterMovies,
-  counterDurationMovie,
-} from "../../utils/functionHelpers.js"
+import { filterMovies, counterDurationMovie } from "../../utils/functionHelpers.js"
 import SearchForm from "../SearchForm/SearchForm.js"
 
 function SavedMovies({ loggedIn, onDeleteCard, savedMovies }) {

@@ -43,29 +43,14 @@ function MoviesCard({
             />
           </a>
           {isSavedFilms ? (
-            <button
-              type="button"
-              className="card__like-remove"
-              onClick={onDelete}
-            >
-              <img
-                className="card__like-remove"
-                src={btnRemoveMovie}
-                alt="кнопка закрытия"
-              />
-            </button>
+            <button className="card__like-remove" type="button" onClick={onDelete}>
+              <img className="card__like-remove" src={btnRemoveMovie} alt="Кнопка удаления" /></button>
           ) : (
-            <button
-              className={movieLikeBtnClassName}
-              onClick={onCardClick}
-              type="button"
-            ></button>
+            <button className={movieLikeBtnClassName} onClick={onCardClick} type="button"></button>
           )}
           <div className="card__title-block">
             <h2 className="card__title">{card.nameRU}</h2>
-            <span className="card__time">
-              {converterDurationMovie(card.duration)}
-            </span>
+            <span className="card__time">{converterDurationMovie(card.duration)}</span>
           </div>
         </div>
       </li>

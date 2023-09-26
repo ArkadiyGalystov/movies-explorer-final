@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from "react"
 import { Route, Routes, useNavigate, useLocation, Navigate } from "react-router-dom"
-
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js"
+import CurrentUserContext from "../../contexts/CurrentUserContext.js"
+import Header from "../Header/Header.js"
+import Main from "../Main/Main.js"
+import Movies from "../Movies/Movies.js"
+import SavedMovies from "../SavedMovies/SavedMovies.js"
+import Footer from "../Footer/Footer.js"
+import Login from "../Login/Login.js"
+import Register from "../Register/Register.js"
 import "./App.css"
-
-import Header from "../Header/Header"
-import Main from "../Main/Main"
-import Footer from "../Footer/Footer"
-
-import Register from "../Register/Register"
-import Login from "../Login/Login"
-import Profile from "../Profile/Profile"
-
-import Movies from "../Movies/Movies"
-import SavedMovies from "../SavedMovies/SavedMovies"
-
-import PageNotFound from "../PageNotFound/PageNotFound"
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute"
-import CurrentUserContext from "../../contexts/CurrentUserContext"
-import * as api from "../../utils/MainApi"
-import InfoTooltip from "../InfoToolTip/InfoToolTip"
-import InfoTooltipEditProfile from "../InfoTooltipEditProfile/InfoTooltipEditProfile"
+import * as api from "../../utils/MainApi.js"
+import Profile from "../Profile/Profile.js"
+import NotFoundError from "../NotFoundError/NotFoundError.js"
+import InfoTooltip from "../InfoToolTip/InfoToolTip.js"
+import InfoTooltipEditProfile from "../InfoTooltipEditProfile/InfoTooltipEditProfile.js"
 
 function App() {
   const [currentUser, setCurrentUser] = useState({})
@@ -79,7 +74,7 @@ function App() {
           console.log(error)
         })
     }
-  }, )
+  }, [])
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -102,12 +97,12 @@ function App() {
     }
   }, [isLoggedIn])
 
-  // регистрация пользователя
-  function registrationUser({ name, email, password }) {
+  // Регистрация
+  function getRegistrationUser({ name, email, password }) {
     api
       .register(name, email, password)
       .then(() => {
-        loginUser({ email, password })
+        getLoginUser({ email, password })
         setInfoToolTipPopupOpen(true)
         setIsSuccess(true)
       })
@@ -118,8 +113,8 @@ function App() {
       })
   }
 
-  // авторизация пользователя
-  function loginUser({ email, password }) {
+  // Логин
+  function getLoginUser({ email, password }) {
     setIsLoading(true)
     api
       .authorize(email, password)
@@ -142,8 +137,8 @@ function App() {
       })
   }
 
-  // редактирование профиля
-  function updateProfileInfo(userInfo) {
+  // Редактирования данных
+  function getUpdateProfileInfo(userInfo) {
     setIsLoading(true)
     api
       .editUserInfo(userInfo)
@@ -156,15 +151,15 @@ function App() {
         setInfoTooltipEditProfilePopupOpen(true)
         setIsUpdate(false)
         console.log(error)
-        authorizationError(error)
+        getAuthorizationError(error)
       })
       .finally(() => {
         setIsLoading(false)
       })
   }
 
-  // отмечаем фильм
-  function likeMovie(card) {
+  // Лайк фильма
+  function getLikeMovie(card) {
     api
       .addCard(card)
       .then((newMovie) => {
@@ -173,12 +168,12 @@ function App() {
       .catch((error) => {
         setIsSuccess(false)
         console.log(error)
-        authorizationError(error)
+        getAuthorizationError(error)
       })
   }
 
-  // удаление фильма
-  function deleteMovie(card) {
+  // Удаление фильма
+  function getDeleteMovie(card) {
     api
       .deleteCard(card._id)
       .then(() => {
@@ -187,12 +182,12 @@ function App() {
       .catch((error) => {
         setIsSuccess(false)
         console.log(error)
-        authorizationError(error)
+        getAuthorizationError(error)
       })
   }
 
-  // чистка данных в локальном хранилище
-  const exitSite = () => {
+  // При выходе из приложения чистка данных в локальном хранилище
+  const getExitSite = () => {
     setIsLoggedIn(false)
     localStorage.removeItem("jwt")
     localStorage.removeItem("allMovies")
@@ -203,10 +198,10 @@ function App() {
     navigate("/")
   }
 
-  // ошибки авторизации
-  function authorizationError(error) {
+  // Обработка ошибки авторизации
+  function getAuthorizationError(error) {
     if (error === "Error: 401") {
-      exitSite()
+      getExitSite()
     }
   }
 
@@ -231,7 +226,7 @@ function App() {
                 isLoggedIn ? (
                   <Navigate to="/movies" replace />
                 ) : (
-                  <Login isLoading={isLoading} onAuthorization={loginUser} />
+                  <Login isLoading={isLoading} onAuthorization={getLoginUser} />
                 )
               }
             />
@@ -243,12 +238,12 @@ function App() {
                 ) : (
                   <Register
                     isLoading={isLoading}
-                    registrationUser={registrationUser}
+                    getRegistrationUser={getRegistrationUser}
                   />
                 )
               }
             />
-            <Route path={"404"} element={<PageNotFound />} />
+            <Route path={"*"} element={<NotFoundError />} />
             <Route
               path={"/movies"}
               element={
@@ -256,9 +251,9 @@ function App() {
                   path="/movies"
                   loggedIn={isLoggedIn}
                   component={Movies}
-                  onDeleteCard={deleteMovie}
+                  onDeleteCard={getDeleteMovie}
                   savedMovies={savedMovies}
-                  likeMovie={likeMovie}
+                  getLikeMovie={getLikeMovie}
                 />
               }
             />
@@ -270,7 +265,7 @@ function App() {
                   loggedIn={isLoggedIn}
                   component={SavedMovies}
                   savedMovies={savedMovies}
-                  onDeleteCard={deleteMovie}
+                  onDeleteCard={getDeleteMovie}
                 />
               }
             />
@@ -281,9 +276,9 @@ function App() {
                   path="/profile"
                   loggedIn={isLoggedIn}
                   isLoading={isLoading}
-                  onUpdateUser={updateProfileInfo}
+                  onUpdateUser={getUpdateProfileInfo}
                   component={Profile}
-                  signOut={exitSite}
+                  signOut={getExitSite}
                 />
               }
             />

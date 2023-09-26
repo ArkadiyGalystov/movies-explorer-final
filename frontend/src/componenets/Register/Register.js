@@ -4,12 +4,12 @@ import Form from "../Form/Form"
 import { EMAIL_REGEX } from "../../utils/constants.js"
 import useForm from "../../hooks/useForm.js"
 
-function Register({ isLoading, registrationUser }) {
+function Register({ isLoading, getRegistrationUser }) {
   const { enteredValues, errors, handleChangeInput, isFormValid } = useForm()
 
-  function editProfileInfo(evt) {
-    evt.preventDefault()
-    registrationUser({
+  function editProfileInfo(e) {
+    e.preventDefault()
+    getRegistrationUser({
       name: enteredValues.name,
       email: enteredValues.email,
       password: enteredValues.password,

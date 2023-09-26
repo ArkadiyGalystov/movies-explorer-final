@@ -19,7 +19,7 @@ function InfoTooltipEditProfile(props) {
             <p className="popup__signup-title">Что-то пошло не так. Попробуйте ещё раз!</p>
           </>
         )}
-        <button className="popup__close-button" onClick={props.onClose} type="button"></button>
+        <button className="popup__close-button" type="button" onClick={props.onClose}></button>
       </div>
     </div>
   )

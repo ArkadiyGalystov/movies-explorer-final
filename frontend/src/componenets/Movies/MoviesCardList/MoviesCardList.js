@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import MoviesCard from "../MoviesCard/MoviesCard.js"
 import SearchError from "../../SearchError/SearchError.js"
-import { DESKTOP_COUNTER_MOVIES, TABLET_COUNTER_MOVIES, MOBILE_COUNTER_MOVIES } from "../../../utils/constants.js"
+import {
+  DESKTOP_COUNTER_MOVIES,
+  TABLET_COUNTER_MOVIES,
+  MOBILE_COUNTER_MOVIES,
+} from "../../../utils/constants.js"
 import Preloader from "../Preloader/Preloader.js"
 import "./MoviesCardList.css"
 
@@ -14,7 +18,7 @@ function MoviesCardList({
   isReqError,
   isNotFound,
   getLikeMovie,
-  onDeleteCard
+  onDeleteCard,
 }) {
   const { pathname } = useLocation()
   const [shownMovies, setShownMovies] = useState(0)
