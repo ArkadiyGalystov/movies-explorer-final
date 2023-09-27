@@ -1,0 +1,7 @@
+.main {
+  background-color: #202020;
+  /*max-width: 1200px;*/
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', 'Arial', sans-serif;
+}
